@@ -142,3 +142,9 @@ button:active{
     color: white;
     margin: 1rem 0 0;
 }
+
+.question .option.selected{
+    background-color: rgba(114, 239, 108, 0.793);
+    color: #000;
+    
+}

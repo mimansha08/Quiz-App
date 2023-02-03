@@ -115,12 +115,12 @@ const STATE = {
 
 const View=()=>{
    const returnObject={
-    displayQuestion: (question,idx)=>{
-        document.querySelector(".number").innerHTML=`Question ${idx+1}`;
+    displayQuestion: (question,qidx,oidx)=>{
+        document.querySelector(".number").innerHTML=`Question ${qidx+1}`;
         document.querySelector(".text").innerHTML=question.text;
         const getOptionHtml=(option,idx)=>{
           return `
-            <div class="option">
+            <div class="option ${oidx===idx?"selected":""}" onclick="app.onOptionClick(${qidx},${idx})">
                 ${option}
             </div>
           `
@@ -135,7 +135,6 @@ const View=()=>{
                     ${idx+1}
                 </div>
             `
-
             return html;
         }
         document.querySelector("#play-area .states").innerHTML=questionStates.map(getQuestionBox).join("");
@@ -159,7 +158,7 @@ const App=()=>{
     if(model.getState(idx).state===STATE.UNATTEMTED){
       model.changeqState(idx,STATE.OPENED);
     }
-    view.displayQuestion(model.getQuestion(idx),idx);
+    view.displayQuestion(model.getQuestion(idx),idx,model.getState(idx).response);
   }
   openQuestion(0);
   const refreshQState=()=>view.displayQuestionsState(model.getQuestionStates());
@@ -177,7 +176,12 @@ const App=()=>{
     refreshQState();
    },
 
-   refreshQState: refreshQState
+   refreshQState: refreshQState,
+   onOptionClick: (qidx,oidx)=>{
+      model.markAnswer(qidx,oidx);
+      openQuestion(model.getCurrentIdx());
+      refreshQState();
+   }
 
   }
 
