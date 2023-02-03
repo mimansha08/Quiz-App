@@ -1,0 +1,144 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: rgba(197, 194, 25, 0.321);
+    font-size: 20px;
+}
+
+.main{
+    display:flex;
+    flex-direction: column;
+}
+
+header{
+    background-color: rgba(0, 0, 0, 0.741);
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    margin:0.5px;
+    border: 5px solid rgb(90, 81, 81);
+    height: 4rem;
+}
+
+header button{
+    background-color: rgb(238, 40, 40);
+    color: rgb(251, 247, 247);
+    border: 1px solid black;
+    border-radius: 8px;
+    padding: 7px;
+    font-size: 20px;
+}
+
+h1{
+    color:rgba(235, 216, 216, 0.94);
+    font-style: italic;
+}
+
+#play-area{
+    display: flex;
+    flex-direction: row;
+    height:calc(100vh - 4rem);
+    background-color: aliceblue;
+}
+
+.sidebar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width:25%;
+    padding: 0.5rem;
+    background-color: rgb(127, 127, 157);
+}
+
+.states{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.states .questionState{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding:0.5rem;
+    width: 3rem;
+    height: 3rem;
+}
+
+.questionState.unattempted{
+    background-color: white;
+}
+
+.questionState.attempted{
+    background-color: rgb(27, 142, 25);
+    color: white;
+}
+
+.questionState.opened{
+    background-color: rgb(67, 75, 162);
+    color: white;
+}
+
+.question{
+    width:75%;
+    padding: 1.5rem;
+    background-color: rgb(88, 116, 116);
+    display: flex;
+    flex-direction: column;
+}
+
+.question button{
+    background-color: rgba(234, 198, 21, 0.579);
+    color: rgb(255, 247, 247);
+    border: 1px solid black;
+    border-radius: 8px;
+    padding: 4px 12px;
+    font-size: 25px;
+}
+
+button:hover{
+    background-color: rgba(35, 234, 21, 0.579);
+    color: rgb(17, 15, 15);
+    cursor: pointer;
+}
+
+button:active{
+    position: relative;
+    top: 3px;
+    left: 3px;
+}
+
+.question .options{
+    display: flex;
+    flex-direction: column;
+    margin: 0.5rem 0;
+    gap: 1rem;
+}
+
+.question .option{
+    background-color: white;
+    padding: 1rem;
+    border: 2px solid black;
+    cursor: pointer;
+}
+
+.question .text{
+    font-size: 1.2rem;
+    color: white;
+    margin: 1rem 0;
+}
+
+.question .number{
+    font-size: 1.2rem;
+    color: white;
+    margin: 1rem 0 0;
+}

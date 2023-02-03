@@ -13,6 +13,36 @@ const STATE = {
         text: "What is the capital of India?",
         options: ["Kolkata", "Delhi", "Patna", "Lucknow"],
         answer: 1
+      },
+      {
+        text: "What is 2+2?",
+        options: ["4","6","5","2"],
+        answer: 0
+      },
+      {
+        text: "What is 2+2?",
+        options: ["4","6","5","2"],
+        answer: 0
+      },
+      {
+        text: "What is 2+2?",
+        options: ["4","6","5","2"],
+        answer: 0
+      },
+      {
+        text: "What is 2+2?",
+        options: ["4","6","5","2"],
+        answer: 0
+      },
+      {
+        text: "What is 2+2?",
+        options: ["4","6","5","2"],
+        answer: 0
+      },
+      {
+        text: "What is 2+2?",
+        options: ["4","6","5","2"],
+        answer: 0
       }];
     const questionStates = [];
     questions.forEach( question => {
@@ -42,6 +72,8 @@ const STATE = {
         setCurrent: (idx)=>{
             current=idx;
         },
+
+        getCurrentIdx: ()=>current,
 
         getNext: ()=>{
             if(current+1<questions.length)
@@ -80,26 +112,76 @@ const STATE = {
 
     return returnobj;
   }
-const model=Model();
-model.changeqState(0,STATE.ATTEMPTED);
-model.markAnswer(0,0);
-console.log(model.calcScore());
-model.changeqState(1,STATE.ATTEMPTED);
-model.markAnswer(1,1);
-console.log(model.calcScore());
 
 const View=()=>{
    const returnObject={
-    displayQuestion: (question)=>{
-
+    displayQuestion: (question,idx)=>{
+        document.querySelector(".number").innerHTML=`Question ${idx+1}`;
+        document.querySelector(".text").innerHTML=question.text;
+        const getOptionHtml=(option,idx)=>{
+          return `
+            <div class="option">
+                ${option}
+            </div>
+          `
+        }
+        document.querySelector("#play-area .options").innerHTML=question.options.map(getOptionHtml).join("");
     },
 
     displayQuestionsState: (questionStates)=>{
+        const getQuestionBox=(qstate,idx)=>{
+            const html=`
+                <div class="questionState ${qstate.state}" onclick="app.onQuestionClick(${idx})" >
+                    ${idx+1}
+                </div>
+            `
 
+            return html;
+        }
+        document.querySelector("#play-area .states").innerHTML=questionStates.map(getQuestionBox).join("");
     },
 
     displayResult: (result)=>{
-        
+        const onButtonClick=()=>{
+            console.log(result);  
+       }
+       document.getElementById("submit-btn").addEventListener("click",onButtonClick);
     }
    } 
+
+   return returnObject;
 }
+
+const App=()=>{
+  let model=Model();
+  let view= View();
+  const openQuestion=(idx)=>{
+    if(model.getState(idx).state===STATE.UNATTEMTED){
+      model.changeqState(idx,STATE.OPENED);
+    }
+    view.displayQuestion(model.getQuestion(idx),idx);
+  }
+  openQuestion(0);
+  const refreshQState=()=>view.displayQuestionsState(model.getQuestionStates());
+  refreshQState();
+  document.getElementById("next-btn").addEventListener("click",()=>{
+      const next=model.getNext();
+      if(next){
+        openQuestion(model.getCurrentIdx());
+        refreshQState();
+      }
+  })
+  const returnobj={
+   onQuestionClick: (idx)=>{
+    openQuestion(idx);
+    refreshQState();
+   },
+
+   refreshQState: refreshQState
+
+  }
+
+  return returnobj;
+}
+
+const app=App();
