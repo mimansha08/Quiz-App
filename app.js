@@ -6,44 +6,55 @@ const STATE = {
   const Model = function(){
     var current=0;
     const questions = [{
-        text: "What is 2+2?",
-        options: ["4","6","5","2"],
-        answer: 0
+        text: "What is Harry Potter's middle name? ",
+        options: ["Albus","James","Granger","Sirius"],
+        answer: 1
       }, {
-        text: "What is the capital of India?",
-        options: ["Kolkata", "Delhi", "Patna", "Lucknow"],
+        text: "What is the other dimension in Stranger Things called?",
+        options: ["The Back To Front", "The Inside Out", "The Upside Down", "The Topsy Turvy"],
+        answer: 2
+      },
+      {
+        text: "What is the original language in which Squid Game is made?",
+        options: ["Korean","Englilsh","Chinese","French"],
+        answer: 0
+      },
+      {
+        text: "Which one is not a character of F.R.I.E.N.D.S?",
+        options: ["Monica","chandler","Joey","Steve"],
+        answer: 3
+      },
+      {
+        text: "Who plays the role of Guddu Pandit in Mirzapur",
+        options: ["Divyendu Sharma","Vikrant Massey","Ali Fazal","Pankaj Tripathi"],
+        answer: 2
+      },
+      {
+        text: "'Gajab beizzati hai' dialouge is from which series",
+        options: ["Khaaki","Panchayat","sacred Games","Gullak"],
         answer: 1
       },
       {
-        text: "What is 2+2?",
-        options: ["4","6","5","2"],
+        text: "What is not a TVF series?",
+        options: ["Kota Factory","Flames","Taaza Khabar","College Romance"],
+        answer: 2
+      },
+      {
+        text: "what is the monster in 'Wednesday' called?",
+        options: ["Hyde","Demogorgan","Mind Flayer","voldemort"],
         answer: 0
       },
       {
-        text: "What is 2+2?",
-        options: ["4","6","5","2"],
-        answer: 0
+        text: "What reminds you of series 'Dark'?",
+        options: ["Friends Don't Lie","Prometheus","Red Light Green Light","A glitch in the matrix"],
+        answer: 3
       },
       {
-        text: "What is 2+2?",
-        options: ["4","6","5","2"],
-        answer: 0
-      },
-      {
-        text: "What is 2+2?",
-        options: ["4","6","5","2"],
-        answer: 0
-      },
-      {
-        text: "What is 2+2?",
-        options: ["4","6","5","2"],
-        answer: 0
-      },
-      {
-        text: "What is 2+2?",
-        options: ["4","6","5","2"],
-        answer: 0
-      }];
+        text: "What is not a character of any series?",
+        options: ["Clay","February","Eleven","wednesday"],
+        answer: 1
+      }
+    ];
     const questionStates = [];
     questions.forEach( question => {
       questionStates.push({
