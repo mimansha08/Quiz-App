@@ -86,6 +86,7 @@ const STATE = {
 
         markAnswer: (qidx,oidx)=>{
             questionStates[qidx].response=oidx;
+            questionStates[qidx].state=STATE.ATTEMPTED;
         },
          
         calcScore: ()=>{
@@ -155,6 +156,7 @@ const App=()=>{
   let model=Model();
   let view= View();
   const openQuestion=(idx)=>{
+    model.setCurrent(idx);
     if(model.getState(idx).state===STATE.UNATTEMTED){
       model.changeqState(idx,STATE.OPENED);
     }
