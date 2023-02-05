@@ -1,3 +1,7 @@
+:root{
+    --height:calc(100vh - 4rem);
+}
+
 *{
     box-sizing: border-box;
     margin: 0;
@@ -5,7 +9,6 @@
 }
 
 body{
-    background-color: rgba(197, 194, 25, 0.321);
     font-size: 20px;
 }
 
@@ -43,7 +46,7 @@ h1{
 #play-area{
     display: flex;
     flex-direction: row;
-    height:calc(100vh - 4rem);
+    height: var(--height);
     background-color: aliceblue;
 }
 
@@ -147,4 +150,23 @@ button:active{
     background-color: rgba(114, 239, 108, 0.793);
     color: #000;
     
+}
+
+#result-area{
+    display:none;
+    background-color: #a6ebbf;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5rem 0;
+    height: var(--height);
+}
+
+#result-area .score,#result-area .percentage{
+    font-size: 2rem;
+}
+
+#result-area h1{
+    color: #1a1e1c;
+    margin-bottom: 3rem;
 }

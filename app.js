@@ -142,10 +142,11 @@ const View=()=>{
     },
 
     displayResult: (result)=>{
-        const onButtonClick=()=>{
-            console.log(result);  
-       }
-       document.getElementById("submit-btn").addEventListener("click",onButtonClick);
+      document.getElementById("play-area").style.display="none";
+      document.getElementById("result-area").style.display="flex";
+      document.getElementById("submit-btn").style.display="none";
+      document.querySelector("#result-area .score").innerHTML=`SCORE: ${result.correctAns}`;
+      document.querySelector("#result-area .percentage").innerHTML=`PERCENTAGE: ${result.percentage}`;
     }
    } 
 
@@ -172,6 +173,13 @@ const App=()=>{
         refreshQState();
       }
   })
+
+  document.getElementById("submit-btn").addEventListener("click",()=>{
+    const result= model.calcScore();
+    view.displayResult(result);
+   });
+
+
   const returnobj={
    onQuestionClick: (idx)=>{
     openQuestion(idx);
@@ -183,8 +191,9 @@ const App=()=>{
       model.markAnswer(qidx,oidx);
       openQuestion(model.getCurrentIdx());
       refreshQState();
-   }
+   },
 
+   
   }
 
   return returnobj;
